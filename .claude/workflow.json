@@ -1,0 +1,13 @@
+{
+  "kitVersion": "0.4.0",
+  "stack": "generic",
+  "packageManager": "npm",
+  "specsDir": "docs/specs",
+  "protectedBranches": [
+    "main",
+    "master"
+  ],
+  "gitEmail": null,
+  "format": true,
+  "blockLockfileEdits": true
+}

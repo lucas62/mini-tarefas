@@ -1,2 +1,6 @@
 node_modules/
 tarefas.json
+# ai-workflow-kit
+CLAUDE.local.md
+.claude/settings.local.json
+docs/specs/.active
