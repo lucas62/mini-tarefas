@@ -33,7 +33,7 @@ Feature sugerida (pequena, com 3 ACs naturais):
 
 ## 4. `/wf-plan` e `/wf-build`
 - [ ] Rode `/wf-plan`, aprove, e depois `/wf-build` até todas as tarefas fecharem (teste primeiro)
-- [ ] O build cria uma branch (`feat/...`), porque o guard bloqueia commit direto na `main`? Se ele tentar push na `main`, deve ser barrado
+- [ ] Se o build tentar `git push` estando na `main`, o guard barra e sugere criar uma branch `feat/...` (commit local na `main` é permitido)
 
 ## 5. `/wf-review`: `arquivo:linha` (critério de pronta da v0.4)
 - [ ] A tabela do eixo Spec tem colunas `AC | implemented at | tested at | status`
