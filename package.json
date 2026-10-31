@@ -1,0 +1,12 @@
+{
+  "name": "mini-tarefas",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Lista de tarefas mínima (protótipo para validar o ai-workflow-kit v0.4.0)",
+  "engines": { "node": ">=18" },
+  "scripts": {
+    "start": "node src/cli.js",
+    "test": "node --test"
+  }
+}
