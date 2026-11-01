@@ -25,7 +25,7 @@ try {
   } else if (cmd === 'list') {
     for (const t of listTasks(tasks, { onlyOpen: args.includes('--open') })) console.log(`${t.done ? '[x]' : '[ ]'} ${t.id} ${t.title}`);
   } else {
-    console.log('Uso: add <título> | done <id> | list [--open]');
+    console.log('Uso: add <título> | done <id> | rm <id> | list [--open]');
     process.exitCode = cmd ? 1 : 0;
   }
 } catch (e) {

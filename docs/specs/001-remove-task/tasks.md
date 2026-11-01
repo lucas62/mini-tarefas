@@ -12,7 +12,7 @@
   - Blocked by: T01
   - Covers: AC3, AC4
   - Done when: `npm test` passes; `rm 9` and `rm` print the spec'd `erro:` lines, exit 1, file unchanged
-- [ ] T03 List `rm <id>` in the usage text (US3) - files: `src/cli.js`, `test/cli.test.js`
+- [x] T03 List `rm <id>` in the usage text (US3) - files: `src/cli.js`, `test/cli.test.js`
   - Story: US3
   - Blocked by: T01
   - Covers: AC5

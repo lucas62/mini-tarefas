@@ -40,3 +40,8 @@ test('rm sem id: erro "id inválido", exit 1, lista intacta', () => {
   assert.equal(r.stderr, 'erro: id inválido\n');
   assert.deepEqual(read(), TWO);
 });
+
+test('texto de uso lista rm <id>', () => {
+  const { run } = setup();
+  assert.match(run('xyz').stdout, /rm <id>/);
+});
