@@ -14,3 +14,9 @@ export function completeTask(tasks, id) {
 export function listTasks(tasks, { onlyOpen = false } = {}) {
   return onlyOpen ? tasks.filter((t) => !t.done) : tasks;
 }
+
+export function removeTask(tasks, id) {
+  if (!Number.isInteger(id) || id <= 0) throw new Error('id inválido');
+  if (!tasks.some((t) => t.id === id)) throw new Error(`tarefa ${id} não existe`);
+  return tasks.filter((t) => t.id !== id);
+}

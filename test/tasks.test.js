@@ -1,6 +1,6 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { addTask, completeTask, listTasks } from '../src/tasks.js';
+import { addTask, completeTask, listTasks, removeTask } from '../src/tasks.js';
 
 test('addTask gera ids sequenciais e apara o título', () => {
   const t = addTask(addTask([], ' a '), 'b');
@@ -23,4 +23,17 @@ test('completeTask recusa id inexistente', () => {
 test('listTasks --open esconde as concluídas', () => {
   const t = completeTask(addTask(addTask([], 'a'), 'b'), 1);
   assert.deepEqual(listTasks(t, { onlyOpen: true }).map((x) => x.id), [2]);
+});
+
+test('removeTask remove só a tarefa pedida, mesmo concluída', () => {
+  const t = completeTask(addTask(addTask([], 'a'), 'b'), 1);
+  assert.deepEqual(removeTask(t, 1), [{ id: 2, title: 'b', done: false }]);
+});
+
+test('removeTask recusa id inexistente', () => {
+  assert.throws(() => removeTask([], 9), /tarefa 9 não existe/);
+});
+
+test('removeTask recusa id que não é inteiro positivo', () => {
+  for (const id of [NaN, 1.5, 0, -1]) assert.throws(() => removeTask([], id), /id inválido/);
 });
