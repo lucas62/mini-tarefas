@@ -4,7 +4,7 @@
 > Keep it short (aim < 150 lines) and limited to facts an agent cannot derive from the code. Procedures belong in skills, file-scoped guidance in `.claude/rules/`, enforcement in hooks.
 
 ## What this is
-Minimal command-line to-do list (`add`, `done`, `list [--open]`), per `README.md` and `package.json`. It is a prototype to validate ai-workflow-kit v0.4.0 (`package.json` description).
+Minimal command-line to-do list (`add`, `done`, `rm`, `list [--open]`), per `README.md` and `package.json`. It is a prototype to validate ai-workflow-kit v0.4.0 (`package.json` description).
 Users: a single developer running it locally [a confirmar].
 
 ## Stack
@@ -26,9 +26,9 @@ Run tests (typecheck/lint not configured) before declaring any task done, and re
 
 ## Architecture
 - `src/cli.js`: entry point; parses argv, loads, calls a rule, saves, prints.
-- `src/tasks.js`: pure domain rules (`addTask`, `completeTask`, `listTasks`), no I/O, return new arrays (immutable).
+- `src/tasks.js`: pure domain rules (`addTask`, `completeTask`, `removeTask`, `listTasks`), no I/O, return new arrays (immutable).
 - `src/store.js`: JSON file persistence; file from `TAREFAS_FILE` env, default `tarefas.json` in cwd.
-- `test/tasks.test.js`: unit tests for `src/tasks.js` only; the CLI and store have no tests.
+- `test/tasks.test.js`: unit tests for `src/tasks.js`; `test/cli.test.js`: process-level CLI tests (temp `TAREFAS_FILE`). `store.js` has no direct tests.
 - Flow: argv -> `load` -> rule in `tasks.js` -> `save` -> stdout; errors become `erro: <msg>` on stderr with exit code 1.
 - New rules go in `tasks.js` as pure functions that throw `Error` for invalid input [a confirmar].
 

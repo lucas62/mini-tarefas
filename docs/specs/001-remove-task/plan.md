@@ -46,4 +46,4 @@ Verification affordance: `TAREFAS_FILE` env (already exists) + temp dir per test
 - Rollout/rollback: single commit; revert the commit.
 
 ## Deviations (filled during /wf-build)
-- (none yet)
+- Shipped as one commit per task (T01-T03) instead of a single commit; rollback = revert the 3 feat commits.

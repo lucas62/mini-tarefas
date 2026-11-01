@@ -1,6 +1,6 @@
 # 001 - Remove a task by id
 
-Status: in-progress
+Status: shipped
 Date: 2026-10-31
 
 ## Assumptions (written first)
