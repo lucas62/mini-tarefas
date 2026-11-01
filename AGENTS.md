@@ -4,27 +4,33 @@
 > Keep it short (aim < 150 lines) and limited to facts an agent cannot derive from the code. Procedures belong in skills, file-scoped guidance in `.claude/rules/`, enforcement in hooks.
 
 ## What this is
-TODO(init): 2-3 lines - what the product does and who uses it.
+Minimal command-line to-do list (`add`, `done`, `list [--open]`), per `README.md` and `package.json`. It is a prototype to validate ai-workflow-kit v0.4.0 (`package.json` description).
+Users: a single developer running it locally [a confirmar].
 
 ## Stack
-- Stack: Generic (stack not detected - fill in)
+- Stack: Node.js >= 18 CLI, ES modules, zero dependencies (`package.json`)
 - Package manager: npm
-- Language: TODO(init): confirm language
+- Language: JavaScript (no TypeScript; `src/*.js`). UI strings and messages in Portuguese (`src/cli.js`)
 
 ## Commands
 | Task | Command |
 | --- | --- |
 | Dev / run | `npm run start` |
-| Build | TODO(init): define |
-| Typecheck | TODO(init): define |
-| Lint | TODO(init): define |
-| Test | `npm run test` |
-| Format | TODO(init): define |
+| Build | none (plain Node, no build step) |
+| Typecheck | none (plain JS; no tsconfig / JSDoc check) |
+| Lint | none configured |
+| Test | `npm test` (`node --test`, runs `test/*.test.js`) |
+| Format | none configured |
 
-Run typecheck + lint + tests before declaring any task done, and report the real output.
+Run tests (typecheck/lint not configured) before declaring any task done, and report the real output.
 
 ## Architecture
-TODO(init): layers/modules and where things live (3-8 bullets). Entry points and the main data flow.
+- `src/cli.js`: entry point; parses argv, loads, calls a rule, saves, prints.
+- `src/tasks.js`: pure domain rules (`addTask`, `completeTask`, `listTasks`), no I/O, return new arrays (immutable).
+- `src/store.js`: JSON file persistence; file from `TAREFAS_FILE` env, default `tarefas.json` in cwd.
+- `test/tasks.test.js`: unit tests for `src/tasks.js` only; the CLI and store have no tests.
+- Flow: argv -> `load` -> rule in `tasks.js` -> `save` -> stdout; errors become `erro: <msg>` on stderr with exit code 1.
+- New rules go in `tasks.js` as pure functions that throw `Error` for invalid input [a confirmar].
 
 
 ## Conventions
