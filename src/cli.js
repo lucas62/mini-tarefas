@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 // Uso: node src/cli.js add "comprar pão" | done 1 | list [--open]
-import { addTask, completeTask, listTasks } from './tasks.js';
+import { addTask, completeTask, listTasks, removeTask } from './tasks.js';
 import { load, save } from './store.js';
 
 const FILE = process.env.TAREFAS_FILE || 'tarefas.json';
@@ -16,6 +16,12 @@ try {
     tasks = completeTask(tasks, Number(args[0]));
     save(FILE, tasks);
     console.log(`x ${args[0]}`);
+  } else if (cmd === 'rm') {
+    const id = Number(args[0]);
+    const task = tasks.find((t) => t.id === id);
+    tasks = removeTask(tasks, id);
+    save(FILE, tasks);
+    console.log(`- ${id} ${task.title}`);
   } else if (cmd === 'list') {
     for (const t of listTasks(tasks, { onlyOpen: args.includes('--open') })) console.log(`${t.done ? '[x]' : '[ ]'} ${t.id} ${t.title}`);
   } else {

@@ -14,3 +14,7 @@ export function completeTask(tasks, id) {
 export function listTasks(tasks, { onlyOpen = false } = {}) {
   return onlyOpen ? tasks.filter((t) => !t.done) : tasks;
 }
+
+export function removeTask(tasks, id) {
+  return tasks.filter((t) => t.id !== id);
+}
