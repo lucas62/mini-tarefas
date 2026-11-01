@@ -24,3 +24,19 @@ test('rm <id> remove a tarefa e imprime "- <id> <título>"', () => {
   assert.equal(r.stdout, '- 1 a\n');
   assert.deepEqual(read(), [TWO[1]]);
 });
+
+test('rm com id inexistente: erro claro, exit 1, lista intacta', () => {
+  const { run, read } = setup(TWO);
+  const r = run('rm', '9');
+  assert.equal(r.status, 1);
+  assert.equal(r.stderr, 'erro: tarefa 9 não existe\n');
+  assert.deepEqual(read(), TWO);
+});
+
+test('rm sem id: erro "id inválido", exit 1, lista intacta', () => {
+  const { run, read } = setup(TWO);
+  const r = run('rm');
+  assert.equal(r.status, 1);
+  assert.equal(r.stderr, 'erro: id inválido\n');
+  assert.deepEqual(read(), TWO);
+});

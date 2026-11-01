@@ -7,7 +7,7 @@
   - Blocked by: none
   - Covers: AC1, AC2
   - Done when: `npm test` passes with new tests for AC1 (cli) and AC2 (unit), written failing first
-- [ ] T02 Reject unknown and invalid ids with a clear error (US2) - files: `src/tasks.js`, `test/tasks.test.js`, `test/cli.test.js`
+- [x] T02 Reject unknown and invalid ids with a clear error (US2) - files: `src/tasks.js`, `test/tasks.test.js`, `test/cli.test.js`
   - Story: US2
   - Blocked by: T01
   - Covers: AC3, AC4

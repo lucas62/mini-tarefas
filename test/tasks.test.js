@@ -29,3 +29,11 @@ test('removeTask remove só a tarefa pedida, mesmo concluída', () => {
   const t = completeTask(addTask(addTask([], 'a'), 'b'), 1);
   assert.deepEqual(removeTask(t, 1), [{ id: 2, title: 'b', done: false }]);
 });
+
+test('removeTask recusa id inexistente', () => {
+  assert.throws(() => removeTask([], 9), /tarefa 9 não existe/);
+});
+
+test('removeTask recusa id que não é inteiro positivo', () => {
+  for (const id of [NaN, 1.5, 0, -1]) assert.throws(() => removeTask([], id), /id inválido/);
+});
